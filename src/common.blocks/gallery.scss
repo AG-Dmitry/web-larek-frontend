@@ -5,6 +5,8 @@
   @include mixins.container;
   @include mixins.grid(600px, 24px);
 
+  padding-top: 228px;
+
   &__item {
     border: none;
     border-radius: $defaultBorderRadius;

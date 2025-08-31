@@ -133,3 +133,29 @@ export function createElement<
     }
     return element;
 }
+
+export function addCorrectAffix(price: number): string {
+    if (price % 10 === 0
+        || price % 10 > 4
+        || price % 100 > 10 && price % 100 < 20
+    ) {
+        return ' синапсов';
+    } else if (price % 10 === 1) {
+        return ' синапс';
+    } return ' синапса';
+}
+
+export function formatNumber(value: number): string {
+    if (value > 9999) {
+        return value
+            .toString(10)
+            .split('')
+            .reverse()
+            .map((digit, i) => digit = i % 3 ? digit : ' ' + digit)
+            .join('')
+            .split('')
+            .reverse()
+            .join('')
+    }
+    return value.toString(10);   
+}
