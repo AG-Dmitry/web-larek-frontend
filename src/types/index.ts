@@ -1,4 +1,4 @@
-import { IEvents } from "../components/base/events";
+import { IEvents } from '../components/base/events';
 
 export interface IOrderInfo {
 	payment: PaymentMethod | null;
@@ -20,26 +20,26 @@ export interface IItem {
 
 export interface IOrderInfoData extends IEvents {
 	getData(data: keyof TFormOrderInfo): TFormOrderInfo;
-  setData(key: keyof TFormOrderInfo, value: string): void;
-  validateOrder(): boolean;
+	setData(key: keyof TFormOrderInfo, value: string): void;
+	validateOrder(): boolean;
 	validateAll(): boolean;
 }
 
 export interface ICatalogData extends IEvents {
-  addItem(item: IItem): void;
-  getItem(id: string): IItem;
+	addItem(item: IItem): void;
+	getItem(id: string): IItem;
 }
 
 export interface IBasketData extends ICatalogData {
-  removeItem(id: string): void;
-  removeItemsAll(): void;
-  getItemsIdList(): string[];
-  getItemsCount(): number;
-  getTotalPrice(): number;
+	removeItem(id: string): void;
+	removeItemsAll(): void;
+	getItemsIdList(): string[];
+	getItemsCount(): number;
+	getTotalPrice(): number;
 }
 
 export interface IBasketButton {
-  setItemsCount(itemsCount: number): void;
+	setItemsCount(itemsCount: number): void;
 }
 
 export interface ICardsContainer {
@@ -51,17 +51,17 @@ export interface ICard {
 }
 
 export interface ICardFull extends ICard {
-  toggleButtonText(isInBasket: boolean): void;
+	toggleButtonText(isInBasket: boolean): void;
 	clearEventListner(): void;
 }
 
 export interface ICardBasket extends ICard {
-  clearEventListner(): void;
+	clearEventListner(): void;
 }
 
 export interface IModal {
-	display(): void;
-	hide(): void;
+	toggleModal(state: boolean): void;
+	updateContainer(item: HTMLElement): void;
 }
 
 export interface IModalSuccess extends IModal {
@@ -89,7 +89,11 @@ export interface IOrderForm extends IForm {
 
 export interface IAppApi {
 	getItems(): Promise<IItem[]>;
-	postOrderInfo(orderInfo: IOrderInfo, total: number, items: string[]): Promise<IOrderInfo>;
+	postOrderInfo(
+		orderInfo: IOrderInfo,
+		total: number,
+		items: string[]
+	): Promise<IOrderInfo>;
 }
 
 export interface IGetItemsResponse {
@@ -99,7 +103,7 @@ export interface IGetItemsResponse {
 
 export enum PaymentMethod {
 	Online = 'online',
-	UponReceipt = 'upon receipt'
+	UponReceipt = 'upon receipt',
 }
 
 export enum Category {
@@ -107,9 +111,12 @@ export enum Category {
 	Other = 'другое',
 	Button = 'кнопка',
 	SoftSkill = 'софт-скил',
-	HardSkill = 'хард-скил'
+	HardSkill = 'хард-скил',
 }
 
-export type TFormOrderInfo = Pick<IOrderInfo, 'payment' | 'email' | 'phone' | 'address'>;
+export type TFormOrderInfo = Pick<
+	IOrderInfo,
+	'payment' | 'email' | 'phone' | 'address'
+>;
 
 export type TBasketItem = Pick<IItem, 'id' | 'title' | 'category' | 'price'>;

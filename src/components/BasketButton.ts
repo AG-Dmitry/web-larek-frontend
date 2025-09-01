@@ -1,21 +1,20 @@
-import { IBasketButton } from "../types";
-import { EventEmitter } from "./base/events";
+import { IBasketButton } from '../types';
+import { EventEmitter } from './base/events';
 
 export class BasketButton extends EventEmitter implements IBasketButton {
-  protected button: HTMLButtonElement;
-  protected counter: HTMLElement; 
+	protected button: HTMLButtonElement;
+	protected counter: HTMLElement;
 
-  constructor(element: HTMLButtonElement) {
-    super();
-    
-    this.button = element;
-    this.counter = this.button.querySelector('.header__basket-counter');
+	constructor(element: HTMLButtonElement) {
+		super();
 
-    this.button.addEventListener('click', () => this.emit('click'))
-  }
+		this.button = element;
+		this.counter = this.button.querySelector('.header__basket-counter');
 
-  setItemsCount(itemsCount: number): void {
-    this.counter.textContent = itemsCount.toString();
-  }
+		this.button.addEventListener('click', () => this.emit('click'));
+	}
 
+	setItemsCount(itemsCount: number): void {
+		this.counter.textContent = itemsCount.toString();
+	}
 }
